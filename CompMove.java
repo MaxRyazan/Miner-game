@@ -7,6 +7,17 @@ import static CloneGame.Symbol.X;
 
 public class CompMove {
 
+    GameTable gameTable;
+ //   FIXME TODO
+  /*  boolean[] tactics = {
+            randomComputerMove(gameTable),
+            compMovePreventGamerWinByRows(gameTable),
+            compMovePreventGamerWinByCols(gameTable),
+            compMovePreventGamerWinByDiagonalOne(gameTable),
+            compMovePreventGamerWinByDiagonalTwo(gameTable)
+    };
+    */
+
     public void tacticMove(GameTable gameTable) {
         if (compMovePreventGamerWinByRows(gameTable)) {
             return;
