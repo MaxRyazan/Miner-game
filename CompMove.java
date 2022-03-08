@@ -8,36 +8,15 @@ import static CloneGame.Symbol.X;
 public class CompMove {
 
     GameTable gameTable;
- //   FIXME TODO
-  /*  boolean[] tactics = {
-            randomComputerMove(gameTable),
-            compMovePreventGamerWinByRows(gameTable),
-            compMovePreventGamerWinByCols(gameTable),
-            compMovePreventGamerWinByDiagonalOne(gameTable),
-            compMovePreventGamerWinByDiagonalTwo(gameTable)
-    };
-    */
 
-    public void tacticMove(GameTable gameTable) {
-        if (compMovePreventGamerWinByRows(gameTable)) {
-            return;
-        } else {
-            if (compMovePreventGamerWinByCols(gameTable)) {
-                return;
-            } else {
-                if (compMovePreventGamerWinByDiagonalOne(gameTable)) {
-                    return;
-                } else {
-                    if (compMovePreventGamerWinByDiagonalTwo(gameTable)) {
-                        return;
-                    } else {
-                        if (randomComputerMove(gameTable)) {
-                            return;
-                        }
-                    }
-                }
-            }
-        }
+
+    public boolean tacticMove(GameTable gameTable) {
+    return    compMovePreventGamerWinByRows(gameTable) ||
+              compMovePreventGamerWinByCols(gameTable)  ||
+              compMovePreventGamerWinByDiagonalOne(gameTable) ||
+              compMovePreventGamerWinByDiagonalTwo(gameTable) ||
+              randomComputerMove(gameTable);
+
     }
 
     public boolean randomComputerMove(GameTable gameTable) {
@@ -48,6 +27,7 @@ public class CompMove {
 
             Square randomSquare = new Square(row, col);
 
+
             if (gameTable.isEmpty(randomSquare)) {
                 gameTable.setSymbol(randomSquare, O);
                 return  true;
@@ -57,19 +37,19 @@ public class CompMove {
 
     public boolean compMovePreventGamerWinByRows(GameTable gameTable) {
         for (int i = 0; i < 3; i++) {
-            if ((gameTable.getSymbol(new Square(i, 0)) == X) && (gameTable.getSymbol(new Square(i, 1)) == X) &&
-                    gameTable.isEmpty(new Square(i, 2))) {
-                gameTable.setSymbol(new Square(i, 2), O);
+            if ((gameTable.getSymbol(i, 0) == X) && (gameTable.getSymbol(i, 1) == X) &&
+                    gameTable.isEmpty(i, 2)) {
+                gameTable.setSymbol(i, 2, O);
                 return  true;
             } else {
-                if ((gameTable.getSymbol(new Square(i, 0)) == X) && (gameTable.getSymbol(new Square(i, 2)) == X) &&
-                        gameTable.isEmpty(new Square(i, 1))) {
-                    gameTable.setSymbol(new Square(i, 1), O);
+                if ((gameTable.getSymbol(i, 0) == X) && (gameTable.getSymbol(i, 2) == X) &&
+                        gameTable.isEmpty(i, 1)) {
+                    gameTable.setSymbol(i, 1, O);
                     return  true;
                 } else {
-                    if ((gameTable.getSymbol(new Square(i, 1)) == X) && (gameTable.getSymbol(new Square(i, 2)) == X) &&
-                            gameTable.isEmpty(new Square(i, 0))) {
-                        gameTable.setSymbol(new Square(i, 0), O);
+                    if ((gameTable.getSymbol(i, 1) == X) && (gameTable.getSymbol(i, 2) == X) &&
+                            gameTable.isEmpty(i, 0)) {
+                        gameTable.setSymbol(i, 0, O);
                         return  true;
                     }
                 }
@@ -81,19 +61,19 @@ public class CompMove {
     public boolean compMovePreventGamerWinByCols(GameTable gameTable) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if ((gameTable.getSymbol(new Square(0, j)) == X) && (gameTable.getSymbol(new Square(1, j)) == X) &&
-                        gameTable.isEmpty(new Square(2, j))) {
-                    gameTable.setSymbol(new Square(2, j), O);
+                if ((gameTable.getSymbol(0, j) == X) && (gameTable.getSymbol(1, j) == X) &&
+                        gameTable.isEmpty(2, j)) {
+                    gameTable.setSymbol(2, j, O);
                     return  true;
                 } else {
-                    if ((gameTable.getSymbol(new Square(0, j)) == X) && (gameTable.getSymbol(new Square(2, j)) == X) &&
-                            gameTable.isEmpty(new Square(1, j))) {
-                        gameTable.setSymbol(new Square(1, j), O);
+                    if ((gameTable.getSymbol(0, j) == X) && (gameTable.getSymbol(2, j) == X) &&
+                            gameTable.isEmpty(1, j)) {
+                        gameTable.setSymbol(1, j, O);
                         return  true;
                     } else {
-                        if ((gameTable.getSymbol(new Square(1, j)) == X) && (gameTable.getSymbol(new Square(2, j)) == X) &&
-                                gameTable.isEmpty(new Square(0, j))) {
-                            gameTable.setSymbol(new Square(0, j), O);
+                        if ((gameTable.getSymbol(1, j) == X) && (gameTable.getSymbol(2, j) == X) &&
+                                gameTable.isEmpty(0, j)) {
+                            gameTable.setSymbol(0, j, O);
                         }
                     }
                 }
@@ -105,19 +85,19 @@ public class CompMove {
     public boolean compMovePreventGamerWinByDiagonalOne(GameTable gameTable) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if ((gameTable.getSymbol(new Square(0, 0)) == X) && (gameTable.getSymbol(new Square(1, 1)) == X) &&
-                        gameTable.isEmpty(new Square(2, 2))) {
-                    gameTable.setSymbol(new Square(2, 2), O);
+                if ((gameTable.getSymbol(0, 0) == X) && (gameTable.getSymbol(1, 1) == X) &&
+                        gameTable.isEmpty(2, 2)) {
+                    gameTable.setSymbol(2, 2, O);
                     return  true;
                 } else {
-                    if ((gameTable.getSymbol(new Square(0, 0)) == X) && (gameTable.getSymbol(new Square(2, 2)) == X) &&
-                            gameTable.isEmpty(new Square(1, 1))) {
-                        gameTable.setSymbol(new Square(1, 1), O);
+                    if ((gameTable.getSymbol(0, 0) == X) && (gameTable.getSymbol(2, 2) == X) &&
+                            gameTable.isEmpty(1, 1)) {
+                        gameTable.setSymbol(1, 1, O);
                         return  true;
                     } else {
-                        if ((gameTable.getSymbol(new Square(1, 1)) == X) && (gameTable.getSymbol(new Square(2, 2)) == X) &&
-                                gameTable.isEmpty(new Square(0, 0))) {
-                            gameTable.setSymbol(new Square(0, 0), O);
+                        if ((gameTable.getSymbol(1, 1) == X) && (gameTable.getSymbol(2, 2) == X) &&
+                                gameTable.isEmpty(0, 0)) {
+                            gameTable.setSymbol(0, 0, O);
                             return  true;
                         }
                     }
@@ -130,19 +110,19 @@ public class CompMove {
     public boolean compMovePreventGamerWinByDiagonalTwo(GameTable gameTable) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if ((gameTable.getSymbol(new Square(2, 0)) == X) && (gameTable.getSymbol(new Square(1, 1)) == X) &&
-                        gameTable.isEmpty(new Square(0, 2))) {
-                    gameTable.setSymbol(new Square(0, 2), O);
+                if ((gameTable.getSymbol(2, 0) == X) && (gameTable.getSymbol(1, 1) == X) &&
+                        gameTable.isEmpty(0, 2)) {
+                    gameTable.setSymbol(0, 2, O);
                     return  true;
                 } else {
-                    if ((gameTable.getSymbol(new Square(2, 0)) == X) && (gameTable.getSymbol(new Square(0, 2)) == X) &&
-                            gameTable.isEmpty(new Square(1, 1))) {
-                        gameTable.setSymbol(new Square(1, 1), O);
+                    if ((gameTable.getSymbol(2, 0) == X) && (gameTable.getSymbol(0, 2) == X) &&
+                            gameTable.isEmpty(1, 1)) {
+                        gameTable.setSymbol(1, 1, O);
                         return  true;
                     } else {
-                        if ((gameTable.getSymbol(new Square(1, 1)) == X) && (gameTable.getSymbol(new Square(0, 2)) == X) &&
-                                gameTable.isEmpty(new Square(2, 0))) {
-                            gameTable.setSymbol(new Square(2, 0), O);
+                        if ((gameTable.getSymbol(1, 1) == X) && (gameTable.getSymbol(0, 2) == X) &&
+                                gameTable.isEmpty(2, 0)) {
+                            gameTable.setSymbol(2, 0, O);
                             return  true;
                         }
                     }
