@@ -37,7 +37,7 @@ while(true) {
         System.out.println("GAME OVER");
         break;
     }
-    compMove.tacticMove(gameTable);
+    compMove.tactic(gameTable);
     gameTable.printGameMapRefresh(gameTable);
     if(winCheckModul.compWin(gameTable)){
         System.out.println("Компьютер выиграл!");

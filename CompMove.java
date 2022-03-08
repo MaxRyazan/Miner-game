@@ -10,8 +10,12 @@ public class CompMove {
     GameTable gameTable;
 
 
-    public boolean tacticMove(GameTable gameTable) {
-    return    compMovePreventGamerWinByRows(gameTable) ||
+    public boolean tactic(GameTable gameTable) {
+    return    compMoveWinByDiagonalOne(gameTable) ||
+              compMoveWinByDiagonalTwo(gameTable) ||
+              compMoveWinByCols(gameTable) ||
+              compMoveWinByRows(gameTable) ||
+              compMovePreventGamerWinByRows(gameTable) ||
               compMovePreventGamerWinByCols(gameTable)  ||
               compMovePreventGamerWinByDiagonalOne(gameTable) ||
               compMovePreventGamerWinByDiagonalTwo(gameTable) ||
@@ -131,4 +135,102 @@ public class CompMove {
         }
         return false;
     }
+
+    public boolean compMoveWinByRows(GameTable gameTable) {
+        for (int i = 0; i < 3; i++) {
+            if ((gameTable.getSymbol(i, 0) == O) && (gameTable.getSymbol(i, 1) == O) &&
+                    gameTable.isEmpty(i, 2)) {
+                gameTable.setSymbol(i, 2, O);
+                return  true;
+            } else {
+                if ((gameTable.getSymbol(i, 0) == O) && (gameTable.getSymbol(i, 2) == O) &&
+                        gameTable.isEmpty(i, 1)) {
+                    gameTable.setSymbol(i, 1, O);
+                    return  true;
+                } else {
+                    if ((gameTable.getSymbol(i, 1) == O) && (gameTable.getSymbol(i, 2) == O) &&
+                            gameTable.isEmpty(i, 0)) {
+                        gameTable.setSymbol(i, 0, O);
+                        return  true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public  boolean compMoveWinByCols(GameTable gameTable) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if ((gameTable.getSymbol(0, j) == O) && (gameTable.getSymbol(1, j) == O) &&
+                        gameTable.isEmpty(2, j)) {
+                    gameTable.setSymbol(2, j, O);
+                    return  true;
+                } else {
+                    if ((gameTable.getSymbol(0, j) == O) && (gameTable.getSymbol(2, j) == O) &&
+                            gameTable.isEmpty(1, j)) {
+                        gameTable.setSymbol(1, j, O);
+                        return  true;
+                    } else {
+                        if ((gameTable.getSymbol(1, j) == O) && (gameTable.getSymbol(2, j) == O) &&
+                                gameTable.isEmpty(0, j)) {
+                            gameTable.setSymbol(0, j, O);
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean compMoveWinByDiagonalOne(GameTable gameTable) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if ((gameTable.getSymbol(0, 0) == O) && (gameTable.getSymbol(1, 1) == O) &&
+                        gameTable.isEmpty(2, 2)) {
+                    gameTable.setSymbol(2, 2, O);
+                    return  true;
+                } else {
+                    if ((gameTable.getSymbol(0, 0) == O) && (gameTable.getSymbol(2, 2) == O) &&
+                            gameTable.isEmpty(1, 1)) {
+                        gameTable.setSymbol(1, 1, O);
+                        return  true;
+                    } else {
+                        if ((gameTable.getSymbol(1, 1) == O) && (gameTable.getSymbol(2, 2) == O) &&
+                                gameTable.isEmpty(0, 0)) {
+                            gameTable.setSymbol(0, 0, O);
+                            return  true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean compMoveWinByDiagonalTwo(GameTable gameTable) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if ((gameTable.getSymbol(2, 0) == O) && (gameTable.getSymbol(1, 1) == O) &&
+                        gameTable.isEmpty(0, 2)) {
+                    gameTable.setSymbol(0, 2, O);
+                    return  true;
+                } else {
+                    if ((gameTable.getSymbol(2, 0) == O) && (gameTable.getSymbol(0, 2) == O) &&
+                            gameTable.isEmpty(1, 1)) {
+                        gameTable.setSymbol(1, 1, O);
+                        return  true;
+                    } else {
+                        if ((gameTable.getSymbol(1, 1) == O) && (gameTable.getSymbol(0, 2) == O) &&
+                                gameTable.isEmpty(2, 0)) {
+                            gameTable.setSymbol(2, 0, O);
+                            return  true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
 }
